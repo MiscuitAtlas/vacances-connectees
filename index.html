@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-index.css">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <title>Accueil - VacancesConnectées</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="logo.jpg" alt="Logo VacancesConnectées" id="logo">
+        </a>
+        <h1>VacancesConnectées</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Rechercher</a></li>
+                <li><a href="proposer.html">Proposer un logement</a></li>
+                <li><a href="compte.php">Mon Compte</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="popular-listings">
+        <br><br><br>
+        <h2 align="center">Logements de Vacances Populaires</h2>
+        <div class="image-container">
+            <img id="image-container" src="image1.jpg" alt="Logement de vacances">
+            <button id="prev-button">Précédent</button>
+            <button id="next-button">Suivant</button>
+            <div id="caption-container"></div>
+        </div>
+    <section class="avis" id="avis-section">
+        <h2 align="center">AVIS</h2>
+        <div class="avi" id="avi1"></div>
+        <div class="avi" id="avi2"></div>
+        <div class="avi" id="avi3"></div>
+    </section>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            changeLogement(currentLogementIndex);
+        });
+    </script>
+
+    <section class="reseaux-sociaux">
+        <h2 align="center">Contacts</h2>
+        <ul align=  "center">
+            <li><a href="https://facebook.com/VacancesConnectees" target="_blank"><img src="facebook.png" alt="Facebook"></a></li>
+            <li><a href="https://twitter.com/VacancesConnectees" target="_blank"><img src="twitter.png" alt="Twitter"></a></li>
+        </ul>
+    </section>
+
+    <script src="script-index.js"></script>  
+
+    <br><br><br><br><br>
+    <footer>
+        <p>&copy; 2024 VacancesConnectées. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

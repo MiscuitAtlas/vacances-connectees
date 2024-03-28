@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-compte.css">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Mon Compte - VacancesConnectées</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="logo.jpg" alt="Logo VacancesConnectées" id="logo">
+        </a>
+        <h1>VacancesConnectées</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Rechercher</a></li>
+                <li><a href="proposer.html">Proposer un logement</a></li>
+                <li><a href="compte.html">Mon Compte</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="compte-section">
+        <br><br>
+        <h2>Se Connecter</h2>
+        <div class="connexion-utilisateur">
+            <div class="connection-bar">
+                <div class="left">
+                    <h3>Connection</h3>
+                    <form id="connexion-utilisateur-form" class="active-form">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" name="username" placeholder="Adresse Email" required>
+                        </div>
+                        <br>
+                        <div>
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" id="password" placeholder="Mot de passe" required>
+                            <i class="fas fa-eye-slash" id="togglePassword"></i>
+                        </div>
+                        <p id="forgot-password-link"><i>→ Mot de passe oublié ?</i></p>
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+                <div class="vertical-line"></div>
+                <div class="right">
+                    <h3>Créez votre compte</h3>
+                    <form id="create-account-form">
+                        <div>
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                        </div>
+                        <br>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" name="email" placeholder="Adresse Email" required>
+                        </div>
+                        <br>
+                        <div>
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" id="createPassword" placeholder="Mot de passe" required>
+                            <i class="fas fa-eye-slash" id="toggleCreatePassword"></i>
+                        </div>
+                        <br>
+                        <button type="submit">Ouvrir un compte</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>      
+
+    <script src="script-compte.js"></script>
+
+    <br><br><br><br><br>
+    <footer>
+        <p>&copy; 2023 VacancesConnectées. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

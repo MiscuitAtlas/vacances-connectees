@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-proposer.css">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <title>Proposer un Logement - VacancesConnectées</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="logo.jpg" alt="Logo VacancesConnectées" id="logo">
+        </a>
+        <h1>VacancesConnectées</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Rechercher</a></li>
+                <li><a href="proposer.html">Proposer un logement</a></li>
+                <li><a href="compte.php">Mon Compte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="proposer-section">
+        <h2>Proposez Votre Logement de Vacances</h2>
+        <form id="proposer-form" action="php-proposer.php" method="POST">
+            <div>
+                <label for="nom-logement">Nom du logement :</label>
+                <input type="text" id="nom-logement" name="nom-logement" required>
+            </div>
+            <div>
+                <label for="localisation">Localisation :</label>
+                <input type="text" id="localisation" name="localisation" required>
+            </div>
+            <div>
+                <label for="nombre-chambres">Nombre de chambres :</label>
+                <input type="number" id="nombre-chambres" name="nombre-chambres" min="1" required>
+            </div>
+            <div>
+                <label for="nombre-personnes">Nombre de personnes :</label>
+                <input type="number" id="nombre-personnes" name="nombre-personnes" min="1" required>
+            </div>
+            <div>
+                <label for="prix-nuit">Prix par nuit (en €) :</label>
+                <input type="number" id="prix-nuit" name="prix-nuit" min="0" required>
+            </div>
+            <div>
+                <label for="annonce">Description :</label>
+                <textarea id="annonce" name="annonce" required></textarea>
+            </div>
+            <button type="submit">Proposer</button>
+        </form>
+    </section>  
+    <br><br><br><br>
+    <footer>
+        <p>&copy; 2024 VacancesConnectées. Tous droits réservés.</p>
+    </footer>
+</body>
+
+</html>

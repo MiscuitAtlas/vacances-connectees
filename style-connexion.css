@@ -1,0 +1,101 @@
+/*General*/
+body {
+    background-image: url('fond.jpg');
+    background-size: 100% 91%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #3498db;
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100px;
+    height: auto;
+}
+
+#logo:hover {
+    opacity: 0.8;
+}
+
+#logo a {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/*Texte*/
+.compte-section {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.compte-section h2 {
+    color: black;
+}
+
+.compte-section h3,
+.compte-section p {
+    color: RGB(192, 57, 43);
+}
+
+/*Separation des informations*/
+.connection-bar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    height: 200px;
+}
+
+.connection-bar .left,
+.connection-bar .right {
+    flex: 1;
+}
+
+.vertical-line {
+    border-left: 3px solid black;
+    height: 100%;
+    margin: 0 10px;
+}
+
+/*Boutons*/
+.compte-section form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.compte-section form button:hover {
+    background-color: #2980b9;
+}
