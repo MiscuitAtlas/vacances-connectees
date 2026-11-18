@@ -71,8 +71,8 @@ final class PhotoStorageTest extends TestCase
     {
         foreach (
             [
-            'photo.jpg' => '<?php system($_GET["cmd"]); ?>',
-            'image.gif' => (string) base64_decode('R0lGODlhAQABAAAAACw=', true),
+            'photo.jpg' => '<?php echo "un script, pas une photo"; ?>',
+            'image.gif' => "GIF89a\x01\x00\x01\x00\x00\x00\x00,",
             'vide.png' => '',
             ] as $name => $content
         ) {
