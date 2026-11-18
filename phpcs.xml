@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="VacancesConnectées">
+    <description>PSR-12, avec des lignes de 150 caractères au plus.</description>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <file>src</file>
+    <file>tests</file>
+    <file>public/index.php</file>
+    <file>bin</file>
+    <file>config</file>
+    <rule ref="PSR12"/>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="150"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+        <!-- Données de démonstration et tracés SVG : une ligne par élément reste plus lisible. -->
+        <exclude-pattern>src/Demo/DemoData\.php</exclude-pattern>
+        <exclude-pattern>src/View/Poster\.php</exclude-pattern>
+    </rule>
+</ruleset>

@@ -1,0 +1,8 @@
+# Photos envoyées par les propriétaires : aucun script n'est exécuté dans ce dossier.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<FilesMatch "\.(?!webp$)[^.]+$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

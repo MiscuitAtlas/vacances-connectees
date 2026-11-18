@@ -1,0 +1,8 @@
+# Apache : toutes les adresses passent par index.php, sauf les fichiers qui existent.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+Options -Indexes

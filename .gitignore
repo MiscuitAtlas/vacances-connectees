@@ -1,0 +1,11 @@
+/vendor/
+/config/config.local.php
+/var/*
+!/var/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+!/public/uploads/.htaccess
+/.phpunit.cache/
+*.sqlite
+.DS_Store
+Thumbs.db
