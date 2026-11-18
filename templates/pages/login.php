@@ -4,10 +4,31 @@
  * @var string $returnTo
  * @var string $email
  * @var string $error
+ * @var array{emails: int}|null $demo
  */
 ?>
 <div class="container page narrow">
     <h1>Connexion</h1>
+    <?php if ($demo !== null) : ?>
+        <section class="panel demo-accounts" id="demo" aria-labelledby="titre-demo">
+            <h2 id="titre-demo">Comptes de démonstration</h2>
+            <p>Entrez directement avec un compte déjà rempli, ou utilisez le formulaire avec son adresse et le mot de passe <strong>vacances-demo</strong>.</p>
+            <div class="demo-account-list">
+                <form method="post" action="/demo/connexion">
+                    <?= $this->csrfField() ?>
+                    <input type="hidden" name="compte" value="voyageuse">
+                    <button type="submit" class="button">Entrer comme voyageuse</button>
+                    <p class="help">Camille : séjours passés et à venir, avis à donner. demo@exemple.fr</p>
+                </form>
+                <form method="post" action="/demo/connexion">
+                    <?= $this->csrfField() ?>
+                    <input type="hidden" name="compte" value="proprietaire">
+                    <button type="submit" class="button">Entrer comme propriétaire</button>
+                    <p class="help">Hélène : trois logements et des réservations reçues. hote@exemple.fr</p>
+                </form>
+            </div>
+        </section>
+    <?php endif; ?>
     <form method="post" action="/connexion" class="panel form" novalidate>
         <?= $this->csrfField() ?>
         <input type="hidden" name="retour" value="<?= $this->e($returnTo) ?>">

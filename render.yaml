@@ -1,0 +1,10 @@
+# Démo en ligne sur Render : https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: vacances-connectees
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /

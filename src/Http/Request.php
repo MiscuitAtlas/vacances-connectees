@@ -15,6 +15,7 @@ final class Request
      * @param array<string, mixed> $post
      * @param array<string, mixed> $files
      * @param array<string, mixed> $server
+     * @param array<string, mixed> $cookies
      */
     public function __construct(
         public readonly string $method,
@@ -23,6 +24,7 @@ final class Request
         private readonly array $post = [],
         private readonly array $files = [],
         private readonly array $server = [],
+        private readonly array $cookies = [],
     ) {
     }
 
@@ -37,6 +39,7 @@ final class Request
             $_POST,
             $_FILES,
             $_SERVER,
+            $_COOKIE,
         );
     }
 
@@ -95,6 +98,13 @@ final class Request
         $file = $this->files[$name] ?? null;
 
         return is_array($file) && is_string($file['tmp_name'] ?? null) ? $file : null;
+    }
+
+    public function cookie(string $name): string
+    {
+        $value = $this->cookies[$name] ?? '';
+
+        return is_string($value) ? $value : '';
     }
 
     public function isHttps(): bool

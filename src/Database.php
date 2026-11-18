@@ -11,16 +11,22 @@ final class Database
     /**
      * Connexion PDO : exceptions en cas d'erreur, vraies requêtes préparées côté serveur.
      *
-     * @param array{dsn: string, user?: string|null, password?: string|null} $config
+     * readonly : base SQLite ouverte en lecture seule (base modèle de la démo en ligne).
+     *
+     * @param array{dsn: string, user?: string|null, password?: string|null, readonly?: bool} $config
      */
     public static function connect(array $config): PDO
     {
-        $pdo = new PDO($config['dsn'], $config['user'] ?? null, $config['password'] ?? null, [
+        $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_STRINGIFY_FETCHES => false,
-        ]);
+        ];
+        if ($config['readonly'] ?? false) {
+            $options[PDO::SQLITE_ATTR_OPEN_FLAGS] = PDO::SQLITE_OPEN_READONLY;
+        }
+        $pdo = new PDO($config['dsn'], $config['user'] ?? null, $config['password'] ?? null, $options);
         if (self::isSqlite($pdo)) {
             // SQLite n'applique les clés étrangères que si on le demande.
             $pdo->exec('PRAGMA foreign_keys = ON');

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\App;
 use App\Database;
+use App\Demo\DemoSite;
+use App\Demo\Sandboxes;
 use App\Http\Request;
 use App\Security\Session;
 
@@ -18,10 +20,26 @@ if (PHP_SAPI === 'cli-server') {
 $config = require dirname(__DIR__) . '/src/bootstrap.php';
 
 $request = Request::fromGlobals();
+$session = Session::start($request->isHttps());
+
+if ($config['demo']['enabled']) {
+    $sandboxes = new Sandboxes($config['demo']['dir'], $config['demo']['lifetime'], $config['demo']['max_copies']);
+    ['config' => $config, 'newCopy' => $newCopy] = (new DemoSite($sandboxes))->prepare($config, $request, $session, new DateTimeImmutable());
+    if ($newCopy !== null) {
+        setcookie(Sandboxes::COOKIE, $newCopy, [
+            'expires' => $sandboxes->expiresAt($newCopy)->getTimestamp(),
+            'path' => '/',
+            'secure' => $request->isHttps(),
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
+    }
+}
+
 $app = new App(
     $config,
     Database::connect($config['db']),
-    Session::start($request->isHttps()),
+    $session,
     static fn (): DateTimeImmutable => new DateTimeImmutable('now'),
 );
 $app->handle($request)->send();

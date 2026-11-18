@@ -1,0 +1,11 @@
+.git
+vendor
+var
+docs
+tests
+config/config.local.php
+public/uploads/logements
+phpcs.xml
+phpunit.xml.dist
+.phpunit.cache
+*.sqlite

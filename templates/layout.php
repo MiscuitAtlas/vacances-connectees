@@ -5,6 +5,7 @@
  * @var string $title
  * @var array<string, mixed>|null $currentUser
  * @var list<array{type: string, message: string}> $flashes
+ * @var array{emails: int}|null $demo
  */
 ?>
 <!DOCTYPE html>
@@ -22,6 +23,17 @@
 <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header class="site-header">
+        <?php if ($demo !== null) : ?>
+            <div class="demo-bar">
+                <div class="container demo-bar-inner">
+                    <p><strong>Démo en ligne.</strong> Ce que vous faites ici n'est visible que par vous et s'efface au bout de deux heures.</p>
+                    <ul class="demo-links">
+                        <li><a href="/connexion#demo">Comptes de démonstration</a></li>
+                        <li><a href="/demo/emails"<?= $this->isCurrent('/demo/emails') ? ' aria-current="page"' : '' ?>>Emails envoyés<?= $demo['emails'] > 0 ? ' (' . $demo['emails'] . ')' : '' ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="container header-inner">
             <a class="brand" href="/">
                 <img src="<?= $this->asset('img/logo.svg') ?>" alt="" width="40" height="40">

@@ -7,12 +7,14 @@ namespace App;
 use App\Controller\AccountController;
 use App\Controller\AuthController;
 use App\Controller\BookingController;
+use App\Controller\DemoController;
 use App\Controller\HomeController;
 use App\Controller\HostController;
 use App\Controller\ListingController;
 use App\Controller\PasswordController;
 use App\Controller\ReviewController;
 use App\Controller\SearchController;
+use App\Demo\Mailbox;
 use App\Http\HttpException;
 use App\Http\Request;
 use App\Http\Response;
@@ -104,7 +106,29 @@ final class App
             'currentUser' => $this->auth->user(),
             'path' => $this->request?->path ?? '/',
             'flashes' => $this->session->takeFlashes(),
+            'photosEnabled' => (bool) ($this->config['uploads']['enabled'] ?? true),
+            'demo' => $this->isDemo() ? ['emails' => $this->demoMailCount()] : null,
         ]);
+    }
+
+    public function isDemo(): bool
+    {
+        return (bool) ($this->config['demo']['enabled'] ?? false);
+    }
+
+    /**
+     * Dossier des emails de la copie du visiteur, ou null s'il n'a pas encore de copie.
+     */
+    public function demoMailDir(): ?string
+    {
+        return $this->isDemo() && ($this->config['demo']['copy'] ?? null) !== null ? (string) $this->config['mail']['log_dir'] : null;
+    }
+
+    private function demoMailCount(): int
+    {
+        $dir = $this->demoMailDir();
+
+        return $dir === null ? 0 : Mailbox::count($dir);
     }
 
     public function users(): UserRepository
@@ -207,6 +231,10 @@ final class App
         $router->get('/logements/{id}/modifier', [HostController::class, 'edit']);
         $router->post('/logements/{id}/modifier', [HostController::class, 'update']);
         $router->post('/logements/{id}/supprimer', [HostController::class, 'delete']);
+
+        // Démo en ligne uniquement : ces adresses répondent 404 sur un site normal.
+        $router->post('/demo/connexion', [DemoController::class, 'login']);
+        $router->get('/demo/emails', [DemoController::class, 'emails']);
 
         return $router;
     }

@@ -26,7 +26,7 @@ final class Mailer
         }
         $encodedSubject = mb_encode_mimeheader($subject, 'UTF-8');
         $headers = [
-            'From: ' . $this->from,
+            'From: ' . self::encodeAddress($this->from),
             'MIME-Version: 1.0',
             'Content-Type: text/plain; charset=UTF-8',
             'Content-Transfer-Encoding: 8bit',
@@ -45,5 +45,17 @@ final class Mailer
         }
         $message = implode("\n", ['To: ' . $to, 'Subject: ' . $encodedSubject, ...$headers]) . "\n\n" . $body;
         file_put_contents(sprintf('%s/%s-%s.eml', $this->logDir, date('Ymd-His'), bin2hex(random_bytes(3))), $message);
+    }
+
+    /**
+     * « Nom <adresse> » : le nom peut contenir des accents, il est encodé pour l'en-tête.
+     */
+    private static function encodeAddress(string $address): string
+    {
+        if (preg_match('/^(.+?)\s*<([^>]+)>$/', $address, $match) !== 1) {
+            return $address;
+        }
+
+        return mb_encode_mimeheader($match[1], 'UTF-8') . ' <' . $match[2] . '>';
     }
 }

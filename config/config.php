@@ -41,9 +41,19 @@ $config = [
     ],
 
     'uploads' => [
+        'enabled' => true,
         'dir' => dirname(__DIR__) . '/public/uploads/logements',
         'url' => '/uploads/logements',
         'max_bytes' => 5 * 1024 * 1024,
+    ],
+
+    // Démo en ligne : chaque visiteur reçoit sa propre copie d'une base SQLite de démonstration,
+    // supprimée au bout de deux heures. Voir src/Demo/Sandboxes.php.
+    'demo' => [
+        'enabled' => filter_var($env('DEMO_MODE', 'false'), FILTER_VALIDATE_BOOL),
+        'dir' => dirname(__DIR__) . '/var/demo',
+        'lifetime' => 2 * 3600,
+        'max_copies' => 200,
     ],
 ];
 

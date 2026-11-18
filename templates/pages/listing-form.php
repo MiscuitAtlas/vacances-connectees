@@ -4,6 +4,7 @@
  * @var array<string, mixed>|null $listing
  * @var array<string, mixed> $values
  * @var array<string, string> $errors
+ * @var bool $photosEnabled
  */
 use App\Domain\Catalog;
 
@@ -86,6 +87,9 @@ $photo = $listing !== null ? $this->photoUrl($listing['photo']) : null;
                 <label><input type="checkbox" name="equipements[]" value="<?= $this->e($key) ?>"<?= in_array($key, (array) $values['equipements'], true) ? ' checked' : '' ?>> <?= $this->e($label) ?></label>
             <?php endforeach; ?>
         </fieldset>
+        <?php if (!$photosEnabled) : ?>
+            <p class="help">Dans la démo en ligne, l'envoi de photos est désactivé : l'annonce est illustrée selon le type et le cadre du logement.</p>
+        <?php else : ?>
         <div class="field">
             <label for="photo">Photo <span class="muted">(facultative)</span></label>
             <?php if ($photo !== null) : ?>
@@ -96,6 +100,7 @@ $photo = $listing !== null ? $this->photoUrl($listing['photo']) : null;
             <p class="help" id="aide-photo">JPEG, PNG ou WebP, 5 Mo au plus. Sans photo, l'annonce est illustrée selon le type et le cadre du logement.</p>
             <?= $this->error('photo', $errors) ?>
         </div>
+        <?php endif; ?>
         <button type="submit" class="button"><?= $listing === null ? 'Publier l\'annonce' : 'Enregistrer les modifications' ?></button>
     </form>
 </div>

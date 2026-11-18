@@ -125,7 +125,8 @@ final class HostController extends Controller
     private function storePhoto(Request $request): ?string
     {
         $file = $request->file('photo');
-        if ($file === null || (int) ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+        $enabled = (bool) ($this->app->config['uploads']['enabled'] ?? true);
+        if (!$enabled || $file === null || (int) ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
             return null;
         }
 

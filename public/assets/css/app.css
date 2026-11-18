@@ -53,6 +53,14 @@ body {
   font-family: var(--body);
   font-size: 1rem;
   line-height: 1.55;
+  /* Pied de page en bas de l'écran, même sur une page courte. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 img,
@@ -1268,6 +1276,91 @@ label.inline {
 
 .rating-input [aria-hidden="true"] {
   color: #b7791f;
+}
+
+/* Démo en ligne */
+
+.demo-bar {
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.demo-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+.demo-bar p {
+  margin: 0;
+}
+
+.demo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-links a {
+  color: var(--sun);
+  font-weight: 700;
+}
+
+.demo-links a[aria-current="page"] {
+  text-decoration-thickness: 2px;
+}
+
+.demo-accounts {
+  margin-bottom: 1.5rem;
+  border-color: var(--sea);
+}
+
+.demo-accounts strong {
+  white-space: nowrap;
+}
+
+.demo-account-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 560px) {
+  .demo-account-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.demo-account-list .button {
+  width: 100%;
+}
+
+.demo-account-list .help {
+  margin-top: 0.4rem;
+}
+
+.email {
+  margin-bottom: 1rem;
+}
+
+.email h2 {
+  font-family: var(--body);
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.email-body {
+  margin: 0.9rem 0 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
 /* Erreurs */
